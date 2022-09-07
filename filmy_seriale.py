@@ -31,22 +31,21 @@ class Series(Movies):
         return f"{self.tytul} S{self.numer_sezonu:02}E{self.numer_odcinka:02}"
 
 
+def get_kind(input_list, class_type):
+    filtered_list = []
+    for elem in input_list:
+        if type(elem) == class_type:
+            filtered_list.append(elem)
+    filtered_list.sort(key=lambda x: x.tytul)
+    return filtered_list
+
+
 def get_movies(movies_and_series_list):
-    movies_list = []
-    for elem in movies_and_series_list:
-        if type(elem) == Movies:
-            movies_list.append(elem)
-    movies_list.sort(key=lambda movies: movies.tytul)
-    return movies_list
+    return get_kind(movies_and_series_list, Movies)
 
 
 def get_series(movies_and_series_list):
-    series_list = []
-    for elem in movies_and_series_list:
-        if type(elem) == Series:
-            series_list.append(elem)
-    series_list.sort(key=lambda series: series.tytul)
-    return series_list
+    return get_kind(movies_and_series_list, Series)
 
 
 def lista_pozycji(lst_filmow_i_seriali, type):
